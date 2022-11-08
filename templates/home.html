@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="jumbotron">
+<h1 class="display-4">Homepage</h1>
+<form class="form-inline mt-2 mt-md-0" action="{% url 'search_results' %}" method="get">
+    <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+</form>
+{% if user.is_authenticated %}
+<h2>Hi {{ user.username }}!</h2>
+<p class="lead">You can find the book you are interested in here! </p>
+<p class="lead">The site was created for educational purposes! </p>
+<h3><a href="{% url 'account_logout' %}">Log Out</a></h3>
+{% else %}
+<p>You are not logged!</p>
+<a href="{% url 'account_login' %}">Log In</a> |
+<a href="{% url 'account_signup' %}">Sign Up</a>
+{% endif %}
+</div>
+{% endblock content %}
